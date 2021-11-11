@@ -41,20 +41,43 @@ const personalMovieDB = {
     privat: false
 }
 
-for(let i = 0; i < 2; i++ ) {
-    let question = prompt('Один из последних просмотренных фильмов?', '');
+// for(let i = 0; i < 2; i++ ) {
+//     let question = prompt('Один из последних просмотренных фильмов?', '');
+//
+//     if(question.length < 50) {
+//         let rating = +prompt('На сколько оцените его?', '');
+//
+//         if (rating) {
+//             personalMovieDB.movies[question] = rating;
+//         } else {
+//             i = 0;
+//         }
+//
+//     } else {
+//         i = 0;
+//     }
+// }
 
-    if(question.length < 50) {
-        let rating = +prompt('На сколько оцените его?', '');
+let done = false;
 
-        if (rating) {
-            personalMovieDB.movies[question] = rating;
-        } else {
-            i = 0;
+while (done != true) {
+    let question1 = prompt('Один из последних просмотренных фильмов?', '');
+    if(question1.length && question1.length < 50) {
+        let rating1 = +prompt('На сколько оцените его?', '');
+
+        if(rating1) {
+            personalMovieDB.movies[question1] = rating1;
+
+            let question2 = prompt('Один из последних просмотренных фильмов 2?', '');
+            if(question2.length && question2.length < 50) {
+                let rating2 = +prompt('На сколько оцените его 2?', '');
+
+                if(rating2) {
+                    personalMovieDB.movies[question2] = rating2;
+                    done = true;
+                }
+            }
         }
-
-    } else {
-        i = 0;
     }
 }
 
