@@ -14,24 +14,24 @@
 
 'use strict';
 
-let numberOfFilms = '';
-do {
-    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-} while (!numberOfFilms);
-
-switch (true) {
-    case numberOfFilms < 10:
-        alert('Просмотрено довольно мало фильмов');
-        break;
-    case numberOfFilms > 9 && numberOfFilms <= 30:
-        alert('Вы классический зритель');
-        break;
-    case numberOfFilms > 30:
-        alert('Вы киноман');
-        break;
-    default:
-        alert('Произошла ошибка');
-}
+// let numberOfFilms = '';
+// do {
+//     numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+// } while (!numberOfFilms);
+//
+// switch (true) {
+//     case numberOfFilms < 10:
+//         alert('Просмотрено довольно мало фильмов');
+//         break;
+//     case numberOfFilms > 9 && numberOfFilms <= 30:
+//         alert('Вы классический зритель');
+//         break;
+//     case numberOfFilms > 30:
+//         alert('Вы киноман');
+//         break;
+//     default:
+//         alert('Произошла ошибка');
+// }
 
 const personalMovieDB = {
     count: numberOfFilms,
@@ -44,21 +44,21 @@ const personalMovieDB = {
 // for(let i = 0; i < 2; i++ ) {
 //     let question = prompt('Один из последних просмотренных фильмов?', '');
 //
-//     if(question.length < 50) {
+//     if(question && question.length < 50) {
 //         let rating = +prompt('На сколько оцените его?', '');
 //
 //         if (rating) {
 //             personalMovieDB.movies[question] = rating;
 //         } else {
-//             i = 0;
+//             i--;
 //         }
 //
 //     } else {
-//         i = 0;
+//         i--;
 //     }
 // }
 
-let done = false;
+// let done = false;
 
 // while (!done) {
 //     let question1 = prompt('Один из последних просмотренных фильмов?', '');
@@ -81,25 +81,50 @@ let done = false;
 //     }
 // }
 
-do {
-    let question1 = prompt('Один из последних просмотренных фильмов?', '');
-    if(question1.length && question1.length < 50) {
-        let rating1 = +prompt('На сколько оцените его?', '');
+// do {
+//     let question1 = prompt('Один из последних просмотренных фильмов?', '');
+//     if(question1.length && question1.length < 50) {
+//         let rating1 = +prompt('На сколько оцените его?', '');
+//
+//         if(rating1) {
+//             personalMovieDB.movies[question1] = rating1;
+//
+//             let question2 = prompt('Один из последних просмотренных фильмов 2?', '');
+//             if(question2.length && question2.length < 50) {
+//                 let rating2 = +prompt('На сколько оцените его 2?', '');
+//
+//                 if(rating2) {
+//                     personalMovieDB.movies[question2] = rating2;
+//                     done = true;
+//                 }
+//             }
+//         }
+//     }
+// } while (!done);
 
-        if(rating1) {
-            personalMovieDB.movies[question1] = rating1;
+/** Правильный вариант **/
 
-            let question2 = prompt('Один из последних просмотренных фильмов 2?', '');
-            if(question2.length && question2.length < 50) {
-                let rating2 = +prompt('На сколько оцените его 2?', '');
+for (let i = 0; i < 2; i++) {
+    const a = prompt('Один из последних просмотренных фильмов?', ''),
+        b = prompt('На сколько оцените его?', '');
 
-                if(rating2) {
-                    personalMovieDB.movies[question2] = rating2;
-                    done = true;
-                }
-            }
-        }
+    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+        personalMovieDB.movies[a] = b;
+        console.log('done');
+    } else {
+        console.log('error');
+        i--;
     }
-} while (!done);
+}
+
+if (personalMovieDB.count < 10) {
+    console.log("Просмотрено довольно мало фильмов");
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    console.log("Вы классический зритель");
+} else if (personalMovieDB.count >= 30) {
+    console.log("Вы киноман");
+} else {
+    console.log("Произошла ошибка");
+}
 
 console.log(personalMovieDB);
