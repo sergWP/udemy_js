@@ -60,7 +60,28 @@ const personalMovieDB = {
 
 let done = false;
 
-while (done != true) {
+// while (!done) {
+//     let question1 = prompt('Один из последних просмотренных фильмов?', '');
+//     if(question1.length && question1.length < 50) {
+//         let rating1 = +prompt('На сколько оцените его?', '');
+//
+//         if(rating1) {
+//             personalMovieDB.movies[question1] = rating1;
+//
+//             let question2 = prompt('Один из последних просмотренных фильмов 2?', '');
+//             if(question2.length && question2.length < 50) {
+//                 let rating2 = +prompt('На сколько оцените его 2?', '');
+//
+//                 if(rating2) {
+//                     personalMovieDB.movies[question2] = rating2;
+//                     done = true;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+do {
     let question1 = prompt('Один из последних просмотренных фильмов?', '');
     if(question1.length && question1.length < 50) {
         let rating1 = +prompt('На сколько оцените его?', '');
@@ -79,6 +100,6 @@ while (done != true) {
             }
         }
     }
-}
+} while (!done);
 
 console.log(personalMovieDB);
