@@ -14,19 +14,8 @@
 
 'use strict';
 
-let numberOfFilms;
-function start() {
-    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-
-    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
-        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-    }
-}
-
-start();
-
 const personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
@@ -66,7 +55,7 @@ const personalMovieDB = {
         for(let i = 1; i < 4; i++) {
             const genre = prompt(`Ваш любимый жанр под номером ${i}`);
 
-            if(genre != '' && genre != null) {
+            if(genre != '' || genre != null) {
                 personalMovieDB.genres.push(genre);
             } else {
                 i--;
@@ -80,9 +69,16 @@ const personalMovieDB = {
         personalMovieDB.genres.forEach((item, index) => {
             console.log(`Любимый жанр #${index+1} - это ${item}`);
         });
+    },
+    start: function() {
+        personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+        while (personalMovieDB.count == '' || personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+            personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+        }
     }
 };
 
+personalMovieDB.start();
 personalMovieDB.rememberMyFilms();
 personalMovieDB.detectPersonalLevel();
 personalMovieDB.showMyDB();
