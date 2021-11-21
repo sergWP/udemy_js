@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* FUNCTIONS */
 
-// CLEAR DEFAULT MOVIES
+    // CLEAR DEFAULT MOVIES
     function clearMovies() {
         iterativeListItems = iterativeList.querySelectorAll('li');
         iterativeListItems.forEach(item => {
@@ -90,17 +90,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-// RESET FORM
+    // RESET FORM
     function formReset() {
         form.reset();
     }
 
-// SORT MOVIES
+    // SORT MOVIES
     function sortMovies() {
         movies.sort();
     }
 
-// INSERT MOVIE TO PAGE FROM OBJ
+    // INSERT MOVIE TO PAGE FROM OBJ
     function innerMovies() {
         for (let i = 0; i < movies.length; i++) {
             iterativeList.innerHTML += `<li class="promo__interactive-item">${i + 1}) ${movies[i]}<div class="delete"></div></li>`;
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addEvent();
     }
 
-// EVENT FOR DELETE MOVIE
+    // EVENT FOR DELETE MOVIE
     function addEvent() {
         let deleteBtns = iterativeList.querySelectorAll('.delete');
         for (let deleteBtn of deleteBtns) {
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-// DELETE FUNCTION
+    // DELETE FUNCTION
     function deleteMovie(e) {
         e.preventDefault();
 
