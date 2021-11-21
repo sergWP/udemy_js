@@ -50,19 +50,24 @@ let { movies } = movieDB;
 clearMovies();
 sortMovies();
 innerMovies();
-addEvent()
+addEvent();
 
 formButton.addEventListener('click', (event) => {
    event.preventDefault();
    clearMovies();
 
-   let formValue = form.querySelector('input').value;
+   let formValue = form.querySelector('input').value,
+       favorite = form.querySelector('input[type="checkbox"]');
 
    if(formValue) {
        if(formValue.length > 21) {
            formValue = `${formValue.substring(0, 21)}...`;
        }
        movies[movies.length] = formValue;
+
+       if(favorite.checked) {
+           console.log('Добавляем любимый фильм')
+       }
    }
 
    formReset();
@@ -98,7 +103,7 @@ function innerMovies() {
     for (let i = 0; i < movies.length; i++) {
         iterativeList.innerHTML += `<li class="promo__interactive-item">${i+1}) ${movies[i]}<div class="delete"></div></li>`;
     }
-    addEvent()
+    addEvent();
 }
 
 // EVENT FOR DELETE MOVIE
