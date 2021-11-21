@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     clearMovies();
     sortMovies();
     innerMovies();
-    addEvent();
 
     formButton.addEventListener('click', (event) => {
         event.preventDefault();
@@ -75,10 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
         formReset();
         sortMovies();
         innerMovies();
-        addEvent()
 
     });
 
+    iterativeList.addEventListener('click', deleteMovies);
 
     /* FUNCTIONS */
 
@@ -105,43 +104,35 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < movies.length; i++) {
             iterativeList.innerHTML += `<li class="promo__interactive-item">${i + 1}) ${movies[i]}<div class="delete"></div></li>`;
         }
-        addEvent();
-    }
-
-    // EVENT FOR DELETE MOVIE
-    function addEvent() {
-        let deleteBtns = iterativeList.querySelectorAll('.delete');
-        for (let deleteBtn of deleteBtns) {
-            deleteBtn.addEventListener('click', deleteMovie);
-        }
     }
 
     // DELETE FUNCTION
-    function deleteMovie(e) {
-        e.preventDefault();
+    // делегирование событий
+    // https://stasonmars.ru/javascript/kak-rabotaet-delegirovanie-sobityi-v-javascript/
 
-        const targetMovie = e.target.parentNode.innerText,
-            targetMovieArr = targetMovie.split(') ');
+    function deleteMovies(e) {
+        if(e.target.matches('.delete')) {
+            const targetMovie = e.target.parentNode.innerText,
+                targetMovieArr = targetMovie.split(') ');
 
-        delete movies[targetMovieArr[0] - 1];
+            delete movies[targetMovieArr[0] - 1];
 
-        const result = movies.filter(movie => {
-            if (movie) {
-                return true
+            const result = movies.filter(movie => {
+                if (movie) {
+                    return true
+                }
+            });
+
+            result.sort();
+            movies = [];
+            for (let key in result) {
+                movies[key] = result[key]
             }
-        });
 
-        result.sort();
-        movies = [];
-        for (let key in result) {
-            movies[key] = result[key]
+            clearMovies();
+            sortMovies();
+            innerMovies();
         }
-
-        clearMovies();
-        sortMovies();
-        innerMovies();
-        addEvent();
-
     }
 
 });
