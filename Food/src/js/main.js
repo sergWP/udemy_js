@@ -99,5 +99,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
     setTimer('.timer', deadline);
 
+    // MODAL
+
+    const modalAction = document.querySelectorAll('[data-modal]'),
+          modalWindow = document.querySelector('.modal'),
+          modalClose = modalWindow.querySelector('.modal__close');
+
+    modalAction.forEach( (modal) => {
+        modal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modalWindow.style.display = 'block';
+        })
+    });
+
+    modalClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        modalWindow.style.display = '';
+    })
 
 });
