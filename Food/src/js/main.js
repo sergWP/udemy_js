@@ -152,14 +152,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', showModalByScroll);
 
-    // MENU - CLASS
+    // MENU CARD - CLASS
 
     class Menu {
-        constructor(image, name, description, price, selector) {
+        constructor(image, name, description, price, selector, ...classes) {
             this.image = image;
             this.name = name;
             this.description = description;
             this.parent = document.querySelector(selector);
+            this.classes = classes; // передаваемые классы в виде массива
             this.price = price;
             this.transfer = 27;
             this.changeToUAH();
@@ -171,8 +172,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
         insertMenuCard() {
             const element = document.createElement('div');
-            element.innerHTML = `<div class="menu__item">
-                                    <img src=${this.image} alt="${this.name}">
+
+            // проверка, было ли переданы классыв рест-оператором. Указываем классы по умолчанию
+            if(this.classes.length === 0) {
+                this.classes.push('menu__item');
+            }
+            this.classes.forEach(className => element.classList.add(className)); // добавление класса с масиива this.classes
+
+            element.innerHTML = `<img src=${this.image} alt="${this.name}">
                                     <h3 class="menu__item-subtitle">${this.name}</h3>
                                     <div class="menu__item-descr">${this.description}</div>
                                     <div class="menu__item-divider"></div>
@@ -180,7 +187,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                         <div class="menu__item-cost">Цена:</div>
                                         <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
                                     </div>
-                                </div>`;
+                                `;
             this.parent.append(element);
         }
     }
@@ -198,7 +205,9 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню "Премиум"',
         'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
         16.36,
-        '.menu .container'
+        '.menu .container',
+        'menu__item',
+        'big'
     ).insertMenuCard();
 
     new Menu(
@@ -206,7 +215,8 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню "Постное"',
         'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
         14.88,
-        '.menu .container'
+        '.menu .container',
+        'menu__item'
     ).insertMenuCard();
 
 });
