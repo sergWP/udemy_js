@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+import './slider';
+
 window.addEventListener('DOMContentLoaded', function() {
 
     // Tabs
