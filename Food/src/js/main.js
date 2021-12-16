@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-import './slider';
+import './slider_v2';
 
 window.addEventListener('DOMContentLoaded', function() {
 

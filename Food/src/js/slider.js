@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', function() {
         hideAllSlides();
 
         i > slides.length ? i = 1 : null;
-        i === 0 ? i = slides.length : null;
+        i < 1 ? i = slides.length : null;
 
         sliderCounter.setAttribute('data-current', i);
         sliderCounter.querySelector('#current').innerHTML = i < 10 ? `0${i}` : i;
