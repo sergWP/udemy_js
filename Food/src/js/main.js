@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 import './slider_v2';
+import './calc';
 
 window.addEventListener('DOMContentLoaded', function() {
 
