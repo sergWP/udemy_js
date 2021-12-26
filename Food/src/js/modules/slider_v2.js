@@ -1,5 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
-
+function slider2() {
     // Slider
 
     let offset = 0;
@@ -150,5 +149,6 @@ window.addEventListener('DOMContentLoaded', function() {
     function deleteNotDigits(str) {
         return +str.replace(/\D/g, '');
     }
+}
 
-});
+module.exports = slider2;

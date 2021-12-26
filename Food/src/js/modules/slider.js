@@ -1,13 +1,10 @@
-'use strict';
-
-window.addEventListener('DOMContentLoaded', function() {
-
+function slider() {
     const slider = document.querySelector('.offer__slider'),
-          sliderWrapper = slider.querySelector('.offer__slider-wrapper'),
-          sliderCounter = slider.querySelector('.offer__slider-counter'),
-          sliderCounterPrev = sliderCounter.querySelector('.offer__slider-prev'),
-          sliderCounterNext = sliderCounter.querySelector('.offer__slider-next'),
-          slides = sliderWrapper.querySelectorAll('.offer__slide');
+        sliderWrapper = slider.querySelector('.offer__slider-wrapper'),
+        sliderCounter = slider.querySelector('.offer__slider-counter'),
+        sliderCounterPrev = sliderCounter.querySelector('.offer__slider-prev'),
+        sliderCounterNext = sliderCounter.querySelector('.offer__slider-next'),
+        slides = sliderWrapper.querySelectorAll('.offer__slide');
 
     let currentSlide = sliderCounter.getAttribute('data-current');
 
@@ -54,5 +51,6 @@ window.addEventListener('DOMContentLoaded', function() {
         let currentSlide = +sliderCounter.getAttribute('data-current');
         sliderModification(currentSlide - 1);
     });
+}
 
-});
+module.exports = slider;

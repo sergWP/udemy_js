@@ -1,5 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
-
+function calc() {
     const result = document.querySelector('.calculating__result span');
 
     let sex, height, weight, age, ratio;
@@ -22,10 +21,10 @@ window.addEventListener('DOMContentLoaded', function() {
         const elements = document.querySelectorAll(selector);
 
         elements.forEach(elem => {
-           elem.classList.remove(activeClass);
-           if(elem.getAttribute('id') === localStorage.getItem('sex')) {
-               elem.classList.add(activeClass);
-           }
+            elem.classList.remove(activeClass);
+            if(elem.getAttribute('id') === localStorage.getItem('sex')) {
+                elem.classList.add(activeClass);
+            }
             if(elem.getAttribute('data-ratio') === localStorage.getItem('ratio')) {
                 elem.classList.add(activeClass);
             }
@@ -106,5 +105,6 @@ window.addEventListener('DOMContentLoaded', function() {
     getDynamicInformation('#height');
     getDynamicInformation('#weight');
     getDynamicInformation('#age');
+}
 
-});
+module.exports = calc;
