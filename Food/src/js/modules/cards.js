@@ -1,6 +1,8 @@
-function cards() {
+//import calc from "./calc";
 
-    const axios = require('axios');
+import {getResource} from "../services/services";
+
+function cards() {
 
     // Используем классы для создание карточек меню
 
@@ -45,67 +47,14 @@ function cards() {
         }
     }
 
-    const getResource = async (url) => {
-        const res = await fetch(url);
-        if(!res.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
-        return res.json();
-    }
-
-    // Variant 1
-
-    // getResource('http://localhost:3000/menu')
-    //     .then(data => {
-    //        data.forEach(({ img, altimg, title, descr, price }) => {
-    //           new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
-    //        });
-    //     });
-
-    // Variant 2
-
-    // getResource('http://localhost:3000/menu')
-    //     .then(data => createCard(data));
-    //
-    // function createCard(data) {
-    //     data.forEach(({ img, altimg, title, descr, price }) => {
-    //         const element = document.createElement('div');
-    //         element.classList.add('menu__item');
-    //         element.innerHTML = `
-    //             <img src=${img} alt=${altimg}>
-    //             <h3 class="menu__item-subtitle">${title}</h3>
-    //             <div class="menu__item-descr">${descr}</div>
-    //             <div class="menu__item-divider"></div>
-    //             <div class="menu__item-price">
-    //                 <div class="menu__item-cost">Цена:</div>
-    //                 <div class="menu__item-total"><span>${price}</span> грн/день</div>
-    //             </div>
-    //         `;
-    //
-    //         document.querySelector('.menu .container').append(element);
-    //     })
-    // }
-
-    axios.get('http://localhost:3000/menu')
+    //const axios = require('axios');
+    getResource('http://localhost:3000/menu')
         .then(data => {
-            data.data.forEach(({ img, altimg, title, descr, price }) => {
-                const element = document.createElement('div');
-                element.classList.add('menu__item');
-                element.innerHTML = `
-                    <img src=${img} alt=${altimg}>
-                    <h3 class="menu__item-subtitle">${title}</h3>
-                    <div class="menu__item-descr">${descr}</div>
-                    <div class="menu__item-divider"></div>
-                    <div class="menu__item-price">
-                        <div class="menu__item-cost">Цена:</div>
-                        <div class="menu__item-total"><span>${price}</span> грн/день</div>
-                    </div>
-                `;
-
-                document.querySelector('.menu .container').append(element);
-            })
+            data.forEach(({img, altimg, title, descr, price}) => {
+                new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
+            });
         });
 
 }
 
-module.exports = cards;
+export default cards;

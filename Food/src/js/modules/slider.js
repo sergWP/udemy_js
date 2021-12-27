@@ -1,3 +1,5 @@
+import calc from "./calc";
+
 function slider() {
     const slider = document.querySelector('.offer__slider'),
         sliderWrapper = slider.querySelector('.offer__slider-wrapper'),
@@ -53,4 +55,4 @@ function slider() {
     });
 }
 
-module.exports = slider;
+export default slider;
